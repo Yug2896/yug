@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bouncing Name Animation</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #222;
+    }
+
+    #ball {
+      position: absolute;
+      padding: 10px 20px;
+      font-size: 30px;
+      color: white;
+      background-color: #ff4757;
+      border-radius: 20px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="ball">Kalathiya Yug</div>
+
+  <script>
+    const ball = document.getElementById('ball');
+    let x = 100, y = 100;
+    let dx = 3, dy = 3;
+
+    function getRandomColor() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return rgb(${r}, ${g}, ${b});
+    }
+
+    function animate() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const ballWidth = ball.offsetWidth;
+      const ballHeight = ball.offsetHeight;
+
+      x += dx;
+      y += dy;
+
+      if (x + ballWidth > width || x < 0) {
+        dx = -dx;
+        ball.style.color = getRandomColor();
+        ball.style.backgroundColor = getRandomColor();
+      }
+
+      if (y + ballHeight > height || y < 0) {
+        dy = -dy;
+        ball.style.color = getRandomColor();
+        ball.style.backgroundColor = getRandomColor();
+      }
+
+      ball.style.left = x + 'px';
+      ball.style.top = y + 'px';
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
